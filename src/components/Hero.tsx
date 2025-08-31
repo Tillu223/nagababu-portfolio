@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Download, Mail, Github, Linkedin } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState("");
-  const fullText = "I build code that solves problems—and sometimes even creates new ones worth solving.";
+  const fullText =
+    "I build code that solves problems—and sometimes even creates new ones worth solving.";
 
   useEffect(() => {
     let index = 0;
@@ -23,7 +24,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
@@ -71,35 +72,58 @@ const Hero = () => {
             </p>
           </div>
 
+          {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
-            <Button variant="hero" size="lg" className="group">
-              <Download className="w-5 h-5 group-hover:animate-bounce" />
-              Download Resume
-            </Button>
+            {/* Java Full Stack Resume */}
+            <a
+              href="/Nagababu_Nurbasha_Software_Engineer_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="hero" size="lg" className="group">
+                <Download className="w-5 h-5 group-hover:animate-bounce" />
+                Java Full Stack Resume
+              </Button>
+            </a>
+
+            {/* ServiceNow Resume */}
+            <a
+              href="/Nurbasha-Nagababu-ServiceNow-ITSM-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="hero" size="lg" className="group">
+                <Download className="w-5 h-5 group-hover:animate-bounce" />
+                ServiceNow Resume
+              </Button>
+            </a>
+
+            {/* Connect Button */}
             <Button variant="glass" size="lg" className="group">
               <Mail className="w-5 h-5 group-hover:scale-110 smooth-transition" />
               Let's Connect
             </Button>
           </div>
 
+          {/* Social Icons */}
           <div className="flex items-center justify-center gap-6 pt-4">
-            <a 
-              href="https://github.com/Tillu223" 
-              target="_blank" 
+            <a
+              href="https://github.com/Tillu223"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 hover:text-white smooth-transition hover:scale-110"
             >
               <Github className="w-6 h-6" />
             </a>
-            <a 
-              href="https://linkedin.com/in/nagababu-nurbasha18" 
-              target="_blank" 
+            <a
+              href="https://linkedin.com/in/nagababu-nurbasha18"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 hover:text-white smooth-transition hover:scale-110"
             >
               <Linkedin className="w-6 h-6" />
             </a>
-            <a 
+            <a
               href="mailto:nurbashanagababu4@gmail.com"
               className="text-white/60 hover:text-white smooth-transition hover:scale-110"
             >

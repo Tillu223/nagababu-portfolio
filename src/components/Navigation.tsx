@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Download } from "lucide-react";
+import {
+  Menu,
+  X,
+  Download,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +24,13 @@ const Navigation = () => {
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
     { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
+
       const sections = navItems.map(item => item.href.substring(1));
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -31,10 +40,8 @@ const Navigation = () => {
         }
         return false;
       });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
+
+      if (currentSection) setActiveSection(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,23 +50,23 @@ const Navigation = () => {
 
   const scrollToSection = (href: string) => {
     const element = document.getElementById(href.substring(1));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 smooth-transition ${
-      isScrolled 
-        ? "glass-card backdrop-blur-md bg-background/80 border-b border-border/50 shadow-soft" 
-        : "bg-transparent"
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 smooth-transition ${
+        isScrolled
+          ? "glass-card backdrop-blur-md bg-background/80 border-b border-border/50 shadow-soft"
+          : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button 
+            <button
               onClick={() => scrollToSection("#home")}
               className="text-xl font-bold text-foreground hover:text-primary smooth-transition"
             >
@@ -71,7 +78,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
@@ -84,14 +91,40 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-          </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
-            <Button variant="hero" size="sm" className="group">
-              <Download className="w-4 h-4 group-hover:animate-bounce" />
-              Resume
-            </Button>
+            {/* Resume Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="hero" size="sm" className="group ml-2 flex items-center gap-2">
+                  <Download className="w-4 h-4 group-hover:animate-bounce" />
+                  Resume
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64">
+                <DropdownMenuItem asChild>
+                  <a
+                    href="/Nagababu_Nurbasha_Software_Engineer_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Download className="w-4 h-4 text-blue-500" />
+                    Java Full Stack Resume
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a
+                    href="/Nurbasha-Nagababu-ServiceNow-ITSM-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Download className="w-4 h-4 text-green-500" />
+                    ServiceNow Resume
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,7 +142,7 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-md">
             <div className="py-4 space-y-2">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
@@ -122,11 +155,29 @@ const Navigation = () => {
                   {item.name}
                 </button>
               ))}
-              <div className="pt-4 px-4">
-                <Button variant="hero" size="sm" className="w-full group">
-                  <Download className="w-4 h-4 group-hover:animate-bounce" />
-                  Download Resume
-                </Button>
+
+              {/* Mobile Resume Dropdown */}
+              <div className="pt-4 px-4 space-y-2">
+                <a
+                  href="/Nagababu_Nurbasha_Software_Engineer_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="hero" size="sm" className="w-full group flex items-center gap-2">
+                    <Download className="w-4 h-4 group-hover:animate-bounce" />
+                    Java Full Stack Resume
+                  </Button>
+                </a>
+                <a
+                  href="/Nurbasha-Nagababu-ServiceNow-ITSM-Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="hero" size="sm" className="w-full group flex items-center gap-2">
+                    <Download className="w-4 h-4 group-hover:animate-bounce" />
+                    ServiceNow Resume
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

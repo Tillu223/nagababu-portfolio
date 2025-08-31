@@ -2,9 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Zap, Users, TrendingUp } from "lucide-react";
-import projectTravel from "@/assets/project-travel.jpg";
-import projectServiceNow from "@/assets/project-servicenow.jpg";
-import projectEcommerce from "@/assets/project-ecommerce.jpg";
+import projectTravel from "@/assets/project-travel-hd.jpg";
+import projectServiceNow from "@/assets/project-servicenow-hd.jpg";
+import projectEcommerce from "@/assets/project-ecommerce-hd.jpg";
 
 const Projects = () => {
   const projects = [
